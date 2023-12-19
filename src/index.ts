@@ -52,7 +52,7 @@ app.get('/posts/:url', async (req, res) => {
 });
 
 app.get('/', async (req, res) => {
-  const allPosts = await posts?.find({});
+  const allPosts = await posts?.findAsync({}).sort({post_id: 1});
   return res.status(200).render('index', {
     allPosts: allPosts,
   });

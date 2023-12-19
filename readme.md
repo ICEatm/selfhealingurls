@@ -33,7 +33,7 @@ The project was built using TypeScript and ExpressJS
 
 ## License
 
-Distributed under the ISC License. See [LICENSE](https://github.com/ICEatm/selfhealingurls/blob/main/LICENSE.md) for more information.
+Distributed under the ISC License. See [LICENSE](https://github.com/ICEatm/selfhealingurls/blob/main/LICENSE) for more information.
 
 ## Authors
 

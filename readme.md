@@ -27,6 +27,8 @@
 
 One of the critical aspects of maintaining a web application is the management of URLs. Over time, URLs can change due to content updates, site reorganization, or platform migrations. This shifting landscape often results in broken links, affecting user experience and SEO ranking. The concept of self-healing URLs addresses this issue by implementing a mechanism that dynamically updates and redirects outdated or broken URLs, ensuring a seamless and consistent user experience.
 
+![Screen Shot](https://i.imgur.com/sGV4biM.png)
+
 ## Built With
 
 The project was built using TypeScript and ExpressJS

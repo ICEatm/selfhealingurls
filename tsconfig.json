@@ -1,0 +1,16 @@
+{
+  "extends": "./node_modules/gts/tsconfig-google.json",
+  "ts-node": {
+    "require": ["sucrase/ts-node-plugin"]
+  },
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "rootDir": "./",
+    "baseUrl": "./",
+    "outDir": "build"
+  },
+  "include": [
+    "src/**/*.ts",
+    "test/**/*.ts"
+  ]
+}

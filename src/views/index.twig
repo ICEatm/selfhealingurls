@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self Healing URLs</title>
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        table {
+            width: 80%;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Self Healing URLs</h1>
+    <p>
+        In order to see how it works, open one of the posts and change the URL:
+        <br>
+        Example: <code>/posts/bacon-ipsum-23 --> /posts/randomstring-23</code>
+        <br>
+        When opening the new URL, the server detects that there is a post existing in the database with the ID 23 and redirects to the original URL.
+        <br>
+        As long as the ID of the post is present in the URL, the server will always find the original URL and redirect the user to it.
+    </p>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Post Content</th>
+                <th>URL</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for post in allPosts %}
+                <tr>
+                    <td>{{ post.post_id }}</td>
+                    <td>{{ post.post }}</td>
+                    <td><a href="/posts/{{ post.url }}">{{ post.url }}</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

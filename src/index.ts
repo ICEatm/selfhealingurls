@@ -51,6 +51,13 @@ app.get('/posts/:url', async (req, res) => {
   }
 });
 
+app.get('/', async (req, res) => {
+  const allPosts = await posts?.find({});
+  return res.status(200).render('index', {
+    allPosts: allPosts,
+  });
+});
+
 app.listen(3000, () => {
   console.log('Server is running on port 3000');
 });

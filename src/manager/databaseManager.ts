@@ -1,6 +1,6 @@
 import Datastore from '@seald-io/nedb';
-import {join} from 'path';
 import {readdirSync} from 'fs';
+import {join} from 'path';
 
 class DatabaseManager {
   private static s_instance: DatabaseManager;

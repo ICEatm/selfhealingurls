@@ -1,4 +1,4 @@
-import {fetchPostByUrl, fetchPostById} from 'src/helpers/databaseHelper';
+import {fetchPostByUrl, fetchPostById} from '../helpers/databaseHelper';
 import {Application, Request, Response} from 'express';
 
 export default function (server: Application): void {

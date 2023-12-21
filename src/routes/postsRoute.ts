@@ -3,6 +3,22 @@ import DBManager from '../manager/databaseManager';
 
 const POSTS = DBManager.getDatabase('posts');
 
+async function fetchPostById(postId: number) {
+  try {
+    return await POSTS?.findOneAsync({post_id: postId});
+  } catch (error) {
+    throw new Error('Error fetching post by ID');
+  }
+}
+
+async function fetchPostByUrl(url: string) {
+  try {
+    return await POSTS?.findOneAsync({url});
+  } catch (error) {
+    throw new Error('Error fetching post by URL');
+  }
+}
+
 export default function (server: Application): void {
   server.get('/posts/:url', async (req: Request, res: Response) => {
     const requestedUrl = req.params.url;
@@ -15,11 +31,10 @@ export default function (server: Application): void {
     }
 
     try {
-      const post = await POSTS?.findOneAsync({post_id: postId});
+      const post = await fetchPostById(postId);
 
       if (!post) {
-        // If post not found, redirect to the URL in the database
-        const postFromId = await POSTS?.findOneAsync({url: requestedUrl});
+        const postFromId = await fetchPostByUrl(requestedUrl);
 
         if (postFromId) {
           return res.redirect(postFromId.url);
@@ -30,18 +45,15 @@ export default function (server: Application): void {
           .json({success: false, message: 'Post not found!'});
       }
 
-      // If the URL matches the stored URL, display the post data
       if (post.url === requestedUrl) {
-        const postData = post.post;
         return res.render('post', {
           post: {
             title: `Post ${postId}`,
-            data: postData,
+            data: post.post,
           },
         });
       }
 
-      // Redirect to the URL in the database if the URLs don't match
       res.redirect(post.url);
     } catch (error) {
       console.error('Error fetching post:', error);

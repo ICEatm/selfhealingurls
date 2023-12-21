@@ -1,23 +1,5 @@
+import {fetchPostByUrl, fetchPostById} from 'src/helpers/databaseHelper';
 import {Application, Request, Response} from 'express';
-import DBManager from '../manager/databaseManager';
-
-const POSTS = DBManager.getDatabase('posts');
-
-async function fetchPostById(postId: number) {
-  try {
-    return await POSTS?.findOneAsync({post_id: postId});
-  } catch (error) {
-    throw new Error('Error fetching post by ID');
-  }
-}
-
-async function fetchPostByUrl(url: string) {
-  try {
-    return await POSTS?.findOneAsync({url});
-  } catch (error) {
-    throw new Error('Error fetching post by URL');
-  }
-}
 
 export default function (server: Application): void {
   server.get('/posts/:url', async (req: Request, res: Response) => {

@@ -3,9 +3,9 @@ import {readdirSync} from 'fs';
 import {join} from 'path';
 
 class DatabaseManager {
+  private readonly _databases: {[key: string]: Datastore};
   private static s_instance: DatabaseManager;
   private readonly _dbFilesPath: string;
-  private readonly _databases: {[key: string]: Datastore};
 
   private constructor() {
     this._dbFilesPath = join(__dirname, '../data');
